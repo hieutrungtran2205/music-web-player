@@ -181,3 +181,62 @@
     </div>
   </body>
 </html>
+
+<script>
+  const listVPOP = document.querySelector(".v-pop");
+  const htmlsVPOP = albumVPOP.map((album) => {
+    return `
+          <li class="album">
+            <a href="play.html">
+              <div
+                class="thumb"
+                style="background-image: url('${album.thumbnail}')"
+              ></div>
+              <div class="info">
+                <span class="song">${album.album_name}</span>
+                <p class="singer">${album.singer}</p>
+              </div>
+            </a>
+          </li>
+          `;
+  });
+  listVPOP.innerHTML = htmlsVPOP.join("");
+
+  const listUSUK = document.querySelector(".us-uk");
+  const htmlsUSUK = albumUSUK.map((album) => {
+    return `
+          <li class="album">
+            <a href="play.html">
+              <div
+                class="thumb"
+                style="background-image: url('${album.thumbnail}')"
+              ></div>
+              <div class="info">
+                <span class="song">${album.album_name}</span>
+                <p class="singer">${album.singer}</p>
+              </div>
+            </a>
+          </li>
+          `;
+  });
+  listUSUK.innerHTML = htmlsUSUK.join("");
+
+  const listKPOP = document.querySelector(".k-pop");
+  const htmlsKPOP = albumKPOP.map((album) => {
+    return `
+          <li class="album">
+            <a href="play.html">
+              <div
+                class="thumb"
+                style="background-image: url('${album.thumbnail}')"
+              ></div>
+              <div class="info">
+                <span class="song">${album.album_name}</span>
+                <p class="singer">${album.singer}</p>
+              </div>
+            </a>
+          </li>
+          `;
+  });
+  listKPOP.innerHTML = htmlsKPOP.join("");
+</script>
