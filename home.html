@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js"></script>
+    <title>Music Web Player</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="navbar">
+        <div class="wrap-back-prev">
+          <div class="back" onclick="goBack()">
+            <i class="far fa-arrow-alt-circle-left"></i>
+          </div>
+          <div class="prev" onclick="goPrev()">
+            <i class="far fa-arrow-alt-circle-right"></i>
+          </div>
+        </div>
+        <div class="account" onclick="logClick()">
+          <div>
+            <i class="far fa-user"></i>
+          </div>
+          <p>Hieu Trung Tran</p>
+          <div>
+            <i class="fas fa-angle-down"></i>
+          </div>
+        </div>
+        <div class="log hidden">
+          <ul>
+            <li class="">Account Information</li>
+            <li class="">Terms of Service</li>
+            <li class="">Contact</li>
+            <li class="">Setting</li>
+            <li class="">Logout</li>
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <div class="home">
+          <div class="heading">
+            <div class="title">V-Pop</div>
+            <div class="more">See All</div>
+          </div>
+          <ul class="list-album v-pop"></ul>
+          <div class="heading">
+            <div class="title">US-UK</div>
+            <div class="more">See All</div>
+          </div>
+          <ul class="list-album us-uk"></ul>
+          <div class="heading">
+            <div class="title">K-Pop</div>
+            <div class="more">See All</div>
+          </div>
+          <ul class="list-album k-pop"></ul>
+        </div>
+      </div>
+      <div class="menu">
+        <h1 class="logo"><a href="home.html">LOGO</a></h1>
+        <div class="menu-item active">
+          <a href="home.html">
+            <i class="fas fa-home"></i>
+            <p>Home</p>
+          </a>
+        </div>
+        <div class="menu-item search">
+          <i class="fas fa-search"></i>
+          <p>Search</p>
+        </div>
+        <div class="menu-item">
+          <i class="fas fa-th-list"></i>
+          <p>Your Library</p>
+        </div>
+        <div class="menu-item">
+          <i class="far fa-plus-square"></i>
+          <p>Create Playlist</p>
+        </div>
+        <div class="menu-item">
+          <i class="fas fa-heart"></i>
+          <p>Liked Songs</p>
+        </div>
+      </div>
+      <!-- <div class="dashboard">
+        <div class="cd">
+          <div
+            class="cd-thumb"
+            style="
+              background-image: url('https://2sao.vietnamnetjsc.vn/images/2021/04/29/23/53/3.jpg');
+            "
+          ></div>
+          <audio id="audio" src=""></audio>
+          <div class="info">
+            <div class="name">
+              <span class="song">Muộn Rồi Mà Sao Còn</span>
+              <p class="singer">Sơn Tùng M-TP</p>
+            </div>
+            <div class="info-icon">
+              <div class="love">
+                <i class="far fa-heart"></i>
+              </div>
+              <div class="download">
+                <i class="fas fa-download"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wrap-control-progress">
+          <div class="wrap-control">
+            <div class="control">
+              <div class="btn btn-repeat active">
+                <i class="fas fa-redo"></i>
+              </div>
+              <div class="btn btn-prev">
+                <i class="fas fa-step-backward"></i>
+              </div>
+              <div class="btn btn-toggle-play">
+                <i class="fas fa-play-circle" style="font-size: 32px"></i>
+              </div>
+              <div class="btn btn-next">
+                <i class="fas fa-step-forward"></i>
+              </div>
+              <div class="btn btn-random active">
+                <i class="fas fa-random"></i>
+              </div>
+            </div>
+          </div>
+          <div class="wrap-progress">
+            <input
+              id="progress"
+              class="progress"
+              type="range"
+              value="0"
+              step="1"
+              min="0"
+              max="100"
+            />
+          </div>
+        </div>
+
+        <div class="option">
+          <div class="wrap-icon">
+            <div class="micro hidden-mobile">
+              <i class="fas fa-microphone-alt"></i>
+            </div>
+            <div class="list hidden-mobile">
+              <i class="fas fa-list-ol"></i>
+            </div>
+            <div class="divice hidden-mobile">
+              <i class="fas fa-desktop"></i>
+            </div>
+
+            <div class="volume hidden-mobile">
+              <div class="wrap-volume-icon">
+                <i class="fas fa-volume-up"></i>
+              </div>
+              <div class="wrap-volume-progress hidden-mobile">
+                <input
+                  id="progress"
+                  class="progress"
+                  type="range"
+                  value="0"
+                  step="1"
+                  min="0"
+                  max="100"
+                  style="width: 100px"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </body>
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js"></script>
+    <title>Music Web Player</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="navbar">
+        <div class="wrap-back-prev">
+          <div class="back" onclick="goBack()">
+            <i class="far fa-arrow-alt-circle-left"></i>
+          </div>
+          <div class="prev" onclick="goPrev()">
+            <i class="far fa-arrow-alt-circle-right"></i>
+          </div>
+        </div>
+        <div class="account" onclick="logClick()">
+          <div>
+            <i class="far fa-user"></i>
+          </div>
+          <p>Hieu Trung Tran</p>
+          <div>
+            <i class="fas fa-angle-down"></i>
+          </div>
+        </div>
+        <div class="log hidden">
+          <ul>
+            <li class="">Account Information</li>
+            <li class="">Terms of Service</li>
+            <li class="">Contact</li>
+            <li class="">Setting</li>
+            <li class="">Logout</li>
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <div class="player-page">
+          <div
+            class="background"
+            style="background-image: url('images/mrmsc.jpg')"
+          ></div>
+          <div class="playlist"></div>
+        </div>
+      </div>
+      <div class="menu">
+        <h1 class="logo"><a href="home.html">LOGO</a></h1>
+        <div class="menu-item active">
+          <a href="home.html">
+            <i class="fas fa-home"></i>
+            <p>Home</p>
+          </a>
+        </div>
+        <div class="menu-item search">
+          <i class="fas fa-search"></i>
+          <p>Search</p>
+        </div>
+        <div class="menu-item">
+          <i class="fas fa-th-list"></i>
+          <p>Your Library</p>
+        </div>
+        <div class="menu-item">
+          <i class="far fa-plus-square"></i>
+          <p>Create Playlist</p>
+        </div>
+        <div class="menu-item">
+          <i class="fas fa-heart"></i>
+          <p>Liked Songs</p>
+        </div>
+      </div>
+      <div class="dashboard">
+        <div class="cd">
+          <div
+            class="cd-thumb"
+            style="background-image: url('images/img-album.jpg')"
+          ></div>
+          <audio id="audio" src=""></audio>
+
+          <div class="info">
+            <div class="name">
+              <span class="song"></span>
+              <p class="singer">Sơn Tùng M-TP</p>
+            </div>
+            <div class="info-icon">
+              <div class="love">
+                <i class="far fa-heart"></i>
+              </div>
+              <div class="download">
+                <i class="fas fa-download"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wrap-control-progress">
+          <div class="wrap-control">
+            <div class="control">
+              <div class="btn btn-repeat active">
+                <i class="fas fa-redo"></i>
+              </div>
+              <div class="btn btn-prev">
+                <i class="fas fa-step-backward"></i>
+              </div>
+              <div class="btn btn-toggle-play">
+                <i class="fas fa-play-circle" style="font-size: 32px"></i>
+                <i class="fas fa-pause-circle" style="font-size: 32px"></i>
+              </div>
+              <div class="btn btn-next">
+                <i class="fas fa-step-forward"></i>
+              </div>
+              <div class="btn btn-random active">
+                <i class="fas fa-random"></i>
+              </div>
+            </div>
+          </div>
+          <div class="wrap-progress">
+            <input
+              id="progress"
+              class="progress"
+              type="range"
+              value="0"
+              step="1"
+              min="0"
+              max="100"
+            />
+          </div>
+        </div>
+
+        <div class="option">
+          <div class="wrap-icon">
+            <div class="micro hidden-mobile">
+              <i class="fas fa-microphone-alt"></i>
+            </div>
+            <div class="list hidden-mobile">
+              <i class="fas fa-list-ol"></i>
+            </div>
+            <div class="divice hidden-mobile">
+              <i class="fas fa-desktop"></i>
+            </div>
+
+            <div class="volume hidden-mobile">
+              <div class="wrap-volume-icon">
+                <i class="fas fa-volume-up"></i>
+              </div>
+              <div class="wrap-volume-progress hidden-mobile">
+                <input
+                  id="progress"
+                  class="progress"
+                  type="range"
+                  value="0"
+                  step="1"
+                  min="0"
+                  max="100"
+                  style="width: 100px"
+                />
+              </div>
+            </div>
+            <div class="ellipsis">
+              <i class="fas fa-ellipsis-h"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    const PlAYER_STORAGE_KEY = "F8_PLAYER";
+    const cdThumb = $(".cd-thumb");
+    const heading = $(".song");
+    const audio = $("#audio");
+    const playBtn = $(".btn-toggle-play");
+    const player = $(".dashboard");
+    const progress = $("#progress");
+    const prevBtn = $(".btn-prev");
+    const nextBtn = $(".btn-next");
+    const randomBtn = $(".btn-random");
+    const repeatBtn = $(".btn-repeat");
+    const app = {
+      currentIndex: 0,
+      isPlaying: false,
+      isRandom: false,
+      isRepeat: false,
+      config: JSON.parse(localStorage.getItem(PlAYER_STORAGE_KEY)) || {},
+
+      songs: [
+        {
+          name: "Muộn Rồi Mà Sao Còn",
+          singer: "Sơn Tùng M-TP",
+          mp3: "music/muonroimasaocon.mp3",
+          img: "https://2sao.vietnamnetjsc.vn/images/2021/04/29/23/53/3.jpg",
+          time: "4:43",
+        },
+        {
+          name: "Có Chắc Yêu Là Đây",
+          singer: "Sơn Tùng M-TP",
+          mp3: "music/cochacyeuladay.mp3",
+          img: "https://vtv1.mediacdn.vn/thumb_w/650/2020/7/3/1061332173675372452476431818456362453126714o-1593780823287457624164-crop-1593780866985947628599.jpg",
+          time: "3:35",
+        },
+        {
+          name: "Em Của Ngày Hôm Qua",
+          singer: "Sơn Tùng M-TP",
+          mp3: "music/emcuangayhomqua.mp3",
+          img: "https://upload.wikimedia.org/wikipedia/vi/thumb/5/5d/Em_c%E1%BB%A7a_ng%C3%A0y_h%C3%B4m_qua.png/220px-Em_c%E1%BB%A7a_ng%C3%A0y_h%C3%B4m_qua.png",
+          time: "3:53",
+        },
+        {
+          name: "Hãy Trao Cho Anh",
+          singer: "Sơn Tùng M-TP",
+          mp3: "music/haytraochoanh.mp3",
+          img: "https://dep.com.vn/wp-content/uploads/2019/07/deponline-sontung.jpg",
+          time: "4:17",
+        },
+        {
+          name: "Chạy Ngay Đi",
+          singer: "Sơn Tùng M-TP",
+          mp3: "music/chayngaydi.mp3",
+          img: "https://upload.wikimedia.org/wikipedia/vi/thumb/8/85/Chay_ngay_di.png/220px-Chay_ngay_di.png",
+          time: "4:15",
+        },
+        {
+          name: "Nơi Này Có Anh",
+          singer: "Sơn Tùng M-TP",
+          mp3: "music/noinaycoanh.mp3",
+          img: "https://upload.wikimedia.org/wikipedia/vi/1/1d/N%C6%A1i_n%C3%A0y_c%C3%B3_anh_-_Single_Cover.jpg",
+          time: "4:36",
+        },
+        {
+          name: "Lạc Trôi",
+          singer: "Sơn Tùng M-TP",
+          mp3: "music/lactroi.mp3",
+          img: "https://static.tuoitre.vn/tto/i/s626/2016/12/12/lac-troi-teasing-artwork-ngang-logo-1481512811.jpg",
+          time: "4:05",
+        },
+        {
+          name: "Chúng Ta Không Thuộc Về Nhau",
+          singer: "Sơn Tùng M-TP",
+          mp3: "music/chungtakhongthuocvenhau.mp3",
+          img: "https://i1.sndcdn.com/artworks-000175086775-mc94bm-t500x500.jpg",
+          time: "4:03",
+        },
+      ],
+      setConfig: function (key, value) {
+        this.config[key] = value;
+        localStorage.setItem(PlAYER_STORAGE_KEY, JSON.stringify(this.config));
+      },
+      render: function () {
+        const htmls = this.songs.map((song, index) => {
+          return `
+            <div class="track ${
+              index === this.currentIndex ? "active" : ""
+            } data-index="${index}">
+                <div class="wrap-thumb-track flex">
+                  <div class="number"><i class="fas fa-music"></i></div>
+                  <div
+                    class="thumb-track"
+                    style="background-image: url('${song.img}')"
+                  ></div>
+                  <div class="info">
+                    <span class="song">${song.name}</span>
+                    <p class="singer">${song.singer}</p>
+                  </div>
+                </div>
+                <div class="time-track">${song.time}</div>
+                <div class="option-track">
+                  <div class="love">
+                    <i class="far fa-heart"></i>
+                  </div>
+                  <div class="download">
+                    <i class="fas fa-download"></i>
+                  </div>
+                  <div class="micro hidden-mobile">
+                    <i class="fas fa-microphone-alt"></i>
+                  </div>
+                  <div class="ellipsis hidden-mobile">
+                    <i class="fas fa-ellipsis-h"></i>
+                  </div>
+                </div>
+              </div>
+                  `;
+        });
+        $(".playlist").innerHTML = htmls.join("\n");
+      },
+      defineProperties: function () {
+        Object.defineProperty(this, "currentSong", {
+          get: function () {
+            return this.songs[this.currentIndex];
+          },
+        });
+      },
+      handleEvents: function () {
+        const _this = this;
+
+        const cdThumbAnimate = cdThumb.animate(
+          [{ transform: "rotate(360deg)" }],
+          {
+            duration: 10000,
+            iterations: Infinity,
+          }
+        );
+        cdThumbAnimate.pause();
+
+        // Click btn play
+        playBtn.onclick = function () {
+          if (_this.isPlaying) {
+            audio.pause();
+          } else {
+            audio.play();
+          }
+        };
+
+        audio.onplay = function () {
+          _this.isPlaying = true;
+          player.classList.add("playing");
+          cdThumbAnimate.play();
+        };
+        audio.onpause = function () {
+          _this.isPlaying = false;
+          player.classList.remove("playing");
+          cdThumbAnimate.pause();
+        };
+        audio.ontimeupdate = function () {
+          if (audio.duration) {
+            const progressPercent = Math.floor(
+              (audio.currentTime / audio.duration) * 100
+            );
+            progress.value = progressPercent;
+          }
+        };
+        progress.onchange = function (e) {
+          const seekTime = (audio.duration / 100) * e.target.value;
+          audio.currentTime = seekTime;
+        };
+
+        nextBtn.onclick = function () {
+          if (_this.isRandom) {
+            _this.randomSong();
+          } else {
+            _this.nextSong();
+          }
+          audio.play();
+          _this.render();
+        };
+        prevBtn.onclick = function () {
+          if (_this.isRandom) {
+            _this.randomSong();
+          } else {
+            _this.prevSong();
+          }
+          audio.play();
+          _this.render();
+        };
+
+        repeatBtn.onclick = function () {
+          _this.isRepeat = !_this.isRepeat;
+          _this.setConfig("isRepeat", _this.isRepeat);
+          repeatBtn.classList.toggle("active", _this.isRepeat);
+        };
+
+        audio.onended = function () {
+          if (_this.isRepeat) {
+            audio.play();
+          } else {
+            nextBtn.click();
+          }
+        };
+        randomBtn.onclick = function () {
+          _this.isRandom = !_this.isRandom;
+          randomBtn.classList.toggle("active", _this.isRandom);
+          this.loadCurrentSong();
+        };
+        $(".playlist").onclick = function (e) {
+          const songNode = e.target.closest(".song:not(.active)");
+
+          if (songNode || e.target.closest(".option")) {
+            if (songNode) {
+              _this.currentIndex = Number(songNode.dataset.index);
+              _this.loadCurrentSong();
+              _this.render();
+              audio.play();
+            }
+            if (e.target.closest(".option")) {
+            }
+          }
+        };
+      },
+      loadCurrentSong: function () {
+        heading.textContent = this.currentSong.name;
+        cdThumb.style.backgroundImage = `url(${this.currentSong.img})`;
+        audio.src = this.currentSong.mp3;
+      },
+      loadConfig: function () {
+        this.isRandom = this.config.isRandom;
+        this.isRepeat = this.config.isRepeat;
+      },
+      nextSong: function () {
+        this.currentIndex++;
+        if (this.currentIndex >= this.songs.length) {
+          this.currentIndex = 0;
+        }
+        this.loadCurrentSong();
+      },
+      prevSong: function () {
+        this.currentIndex--;
+        if (this.currentIndex < 0) {
+          this.currentIndex = this.songs.length - 1;
+          console.log(currentIndex, this.songs.length);
+        }
+        this.loadCurrentSong();
+      },
+      randomSong: function () {
+        let randomIndex;
+        do {
+          randomIndex = Math.floor(Math.random() * this.songs.length);
+        } while (randomIndex === this.currentIndex);
+        {
+          this.currentIndex = randomIndex;
+          this.loadCurrentSong();
+        }
+      },
+      start: function () {
+        // Gán cấu hình từ config vào ứng dụng
+        // Assign configuration from config to application
+        this.loadConfig();
+
+        // Định nghĩa các thuộc tính cho object
+        // Defines properties for the object
+        this.defineProperties();
+
+        // Lắng nghe / xử lý các sự kiện (DOM events)
+        // Listening / handling events (DOM events)
+        this.handleEvents();
+
+        // Tải thông tin bài hát đầu tiên vào UI khi chạy ứng dụng
+        // Load the first song information into the UI when running the app
+        this.loadCurrentSong();
+
+        // Render playlist
+        this.render();
+
+        // Hiển thị trạng thái ban đầu của button repeat & random
+        // Display the initial state of the repeat & random button
+        randomBtn.classList.toggle("active", this.isRandom);
+        repeatBtn.classList.toggle("active", this.isRepeat);
+      },
+    };
+    app.start();
+  </script>
+</html>

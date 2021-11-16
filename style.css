@@ -1,0 +1,470 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Cursive;
+}
+
+i {
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+}
+
+/* Navbar */
+
+.navbar {
+  position: fixed;
+  width: 85%;
+  height: 50px;
+  background-color: #212121;
+  right: 0;
+  z-index: 999;
+}
+
+.wrap-back-prev {
+  display: flex;
+  position: absolute;
+  font-size: 32px;
+  height: 50px;
+  line-height: 50px;
+}
+
+.wrap-back-prev i {
+  padding-left: 16px;
+  color: aliceblue;
+}
+
+.account {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  display: flex;
+  min-width: 150px;
+  height: 35px;
+  line-height: 35px;
+  border-radius: 20px;
+  border: 2px solid aliceblue;
+  color: aliceblue;
+  background-color: black;
+  cursor: pointer;
+}
+
+.account i {
+  padding: 0 12px;
+}
+
+.account:hover {
+  background-color: #282828;
+}
+
+.log {
+  position: absolute;
+  top: 45px;
+  right: 8px;
+  min-width: 200px;
+  min-height: 50px;
+  border-radius: 4px;
+  color: aliceblue;
+  background-color: #212121;
+}
+
+.log li {
+  padding: 16px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.log li:hover {
+  background-color: black;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Content */
+
+.content {
+  width: 85%;
+  min-height: 1000px;
+  float: right;
+  margin-top: 50px;
+  /* margin-bottom: 100px; */
+  background-color: #121212;
+}
+
+.list-album {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.album {
+  width: 180px;
+  height: 280px;
+  margin: 16px 8px;
+  background-color: #181818;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.album:hover {
+  background-color: #282828;
+}
+
+.album a {
+  text-decoration: none;
+}
+
+.thumb {
+  border-radius: 8px;
+  margin: 16px 16px 0 16px;
+  width: 148px;
+  height: 180px;
+  background-position: center center;
+  background-size: cover;
+}
+
+.album .info {
+  min-width: 148px;
+  padding: 16px;
+  color: aliceblue;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info .song {
+  font-size: 16px;
+}
+
+.info .singer {
+  font-size: 14px;
+  color: darkgrey;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.title {
+  margin-top: 16px;
+  margin-left: 16px;
+  left: 16px;
+  font-size: 20px;
+  color: aliceblue;
+}
+
+.heading {
+  display: flex;
+  position: relative;
+}
+
+.more {
+  position: absolute;
+  right: 16px;
+  margin-top: 20px;
+  color: darkgrey;
+}
+
+.more:hover {
+  float: right;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Menu */
+
+.menu {
+  position: fixed;
+  width: 15%;
+  height: 100vh;
+  background-color: black;
+}
+
+.logo {
+  margin-bottom: 24px;
+}
+
+.logo a {
+  color: aliceblue;
+  margin-left: 8px;
+  text-decoration: none;
+}
+
+.menu-item {
+  display: flex;
+  width: 95%;
+  line-height: 20px;
+  color: aliceblue;
+  padding: 16px;
+  margin-bottom: 16px;
+  margin-left: 4px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.menu-item a {
+  display: flex;
+  width: 100%;
+  line-height: 20px;
+  text-decoration: none;
+  color: aliceblue;
+}
+
+.menu-item:hover {
+  background-color: #212121;
+}
+
+.menu-item p {
+  margin-left: 8px;
+}
+
+.menu .active {
+  background-color: #212121;
+}
+
+/* Dashboard */
+
+.dashboard {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #181818;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.cd {
+  display: flex;
+  width: 30%;
+}
+
+.cd-thumb {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  margin: 8px;
+  background-size: cover;
+}
+
+.cd .info {
+  display: flex;
+  width: 350px;
+  padding: 16px;
+  padding-top: 20px;
+  color: aliceblue;
+}
+
+.cd .name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cd .info-icon {
+  display: flex;
+  margin-top: 16px;
+  margin-left: 16px;
+}
+
+.cd .info-icon i {
+  margin-left: 20px;
+}
+
+.wrap-control-progress {
+  height: 100px;
+  line-height: 50px;
+  width: 40%;
+}
+
+.wrap-control {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.wrap-progress {
+  margin-top: -20px;
+}
+
+.control {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+}
+
+.control .btn.active {
+  color: aliceblue;
+}
+
+.btn {
+  font-size: 20px;
+  color: darkgrey;
+  cursor: pointer;
+}
+
+.progress {
+  width: 100%;
+  height: 4px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 6px;
+  background-color: var(--primary-color);
+  cursor: pointer;
+}
+
+.dashboard .fa-pause-circle {
+  display: none;
+}
+
+.dashboard.playing .fa-pause-circle {
+  display: inline-block;
+}
+
+.dashboard.playing .fa-play-circle {
+  display: none;
+}
+
+.dashboard .btn:hover {
+  color: aliceblue;
+}
+
+.option {
+  width: 30%;
+  line-height: 100px;
+  color: aliceblue;
+}
+
+.wrap-icon {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.volume {
+  display: flex;
+}
+
+.wrap-volume-progress {
+  margin-top: -4px;
+  margin-left: 8px;
+}
+
+/* play.html */
+
+.player-page {
+  color: aliceblue;
+  min-height: 100vh;
+  position: relative;
+}
+
+.background {
+  width: 100%;
+  height: 570px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+}
+
+.playlist {
+  margin-top: -180px;
+}
+
+.track {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  line-height: 60px;
+  cursor: pointer;
+}
+
+.track.active {
+  background-color: #282828;
+}
+
+.track:hover {
+  background-color: #282828;
+}
+
+.number {
+  width: 50px;
+  text-align: center;
+}
+
+.wrap-thumb-track {
+  width: 40%;
+}
+
+.thumb-track {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background-size: cover;
+  background-position: center center;
+  margin-top: 12px;
+}
+
+.track .info {
+  width: 250px;
+  height: 50px;
+  line-height: 25px;
+  padding-left: 16px;
+  margin-top: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.time-track {
+  width: 30%;
+  text-align: center;
+}
+
+.option-track {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+}
+
+.option-track i {
+  padding: 0 8px;
+}
+
+.wrap-album {
+  width: 25%;
+  position: relative;
+  text-align: center;
+}
+
+.thumb-album {
+  width: 250px;
+  height: 250px;
+  background-size: cover;
+  border-radius: 8px;
+}
+
+.info-album {
+  width: 250px;
+}
