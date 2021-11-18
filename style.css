@@ -84,6 +84,10 @@ i {
   background-color: black;
 }
 
+.log i {
+  margin-right: 8px;
+}
+
 .hidden {
   display: none;
 }
@@ -95,7 +99,6 @@ i {
   min-height: 1000px;
   float: right;
   margin-top: 50px;
-  /* margin-bottom: 100px; */
   background-color: #121212;
 }
 
@@ -179,6 +182,37 @@ i {
   cursor: pointer;
 }
 
+.footer {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  color: aliceblue;
+  background-color: #212121;
+}
+
+.footer .copy-right {
+  font-size: 14px;
+  margin-left: 16px;
+}
+
+.footer .share {
+  position: absolute;
+  top: 0;
+  right: 8px;
+}
+
+.footer .share a {
+  text-decoration: none;
+  margin-right: 8px;
+}
+
+.footer .share i {
+  color: aliceblue;
+  font-size: 28px;
+}
+
 /* Menu */
 
 .menu {
@@ -189,6 +223,7 @@ i {
 }
 
 .logo {
+  margin-left: 8px;
   margin-bottom: 24px;
 }
 
@@ -383,7 +418,7 @@ i {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .playlist {
