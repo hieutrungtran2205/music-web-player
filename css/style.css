@@ -144,10 +144,6 @@ i {
   text-overflow: ellipsis;
 }
 
-.info .song {
-  font-size: 16px;
-}
-
 .info .singer {
   font-size: 14px;
   color: darkgrey;
@@ -425,7 +421,7 @@ i {
   margin-top: -180px;
 }
 
-.track {
+.song {
   position: relative;
   z-index: 1;
   display: flex;
@@ -435,15 +431,15 @@ i {
   cursor: pointer;
 }
 
-.track.active {
+.song.active {
   background-color: #282828;
 }
 
-.track:active {
+.song:active {
   opacity: 0.8;
 }
 
-.track:hover {
+.song:hover {
   background-color: #282828;
 }
 
@@ -452,11 +448,11 @@ i {
   text-align: center;
 }
 
-.wrap-thumb-track {
+.wrap-thumb-song {
   width: 40%;
 }
 
-.thumb-track {
+.thumb-song {
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -465,7 +461,7 @@ i {
   margin-top: 12px;
 }
 
-.track .info {
+.song .info {
   width: 250px;
   height: 50px;
   line-height: 25px;
@@ -476,18 +472,18 @@ i {
   text-overflow: ellipsis;
 }
 
-.time-track {
+.time-song {
   width: 30%;
   text-align: center;
 }
 
-.option-track {
+.option-song {
   width: 30%;
   display: flex;
   justify-content: center;
 }
 
-.option-track i {
+.option-song i {
   padding: 0 8px;
 }
 
