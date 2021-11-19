@@ -439,6 +439,10 @@ i {
   background-color: #282828;
 }
 
+.track:active {
+  opacity: 0.8;
+}
+
 .track:hover {
   background-color: #282828;
 }

@@ -50,7 +50,7 @@
         <div class="player-page">
           <div
             class="background"
-            style="background-image: url('images/mrmsc.jpg')"
+            style="background-image: url('images/mrmsc_bg.jpg')"
           ></div>
           <div class="playlist"></div>
         </div>
@@ -90,7 +90,7 @@
 
           <div class="info">
             <div class="name">
-              <span class="song"></span>
+              <span class="song_name"></span>
               <p class="singer">Sơn Tùng M-TP</p>
             </div>
             <div class="info-icon">
@@ -181,7 +181,7 @@
   const $ = document.querySelector.bind(document);
   const PlAYER_STORAGE_KEY = "F8_PLAYER";
   const cdThumb = $(".cd-thumb");
-  const heading = $(".song");
+  const heading = $(".song_name");
   const audio = $("#audio");
   const playBtn = $(".btn-toggle-play");
   const player = $(".dashboard");
@@ -190,6 +190,8 @@
   const nextBtn = $(".btn-next");
   const randomBtn = $(".btn-random");
   const repeatBtn = $(".btn-repeat");
+  const playlist = $(".playlist");
+
   const app = {
     currentIndex: 0,
     isPlaying: false,
@@ -263,7 +265,7 @@
         return `
             <div class="track ${
               index === this.currentIndex ? "active" : ""
-            } data-index="${index}">
+            }" data-index="${index}">
                 <div class="wrap-thumb-track flex">
                   <div class="number"><i class="fas fa-music"></i></div>
                   <div
@@ -293,7 +295,7 @@
               </div>
                   `;
       });
-      $(".playlist").innerHTML = htmls.join("\n");
+      playlist.innerHTML = htmls.join("");
     },
     defineProperties: function () {
       Object.defineProperty(this, "currentSong", {
@@ -383,17 +385,19 @@
         randomBtn.classList.toggle("active", _this.isRandom);
         this.loadCurrentSong();
       };
-      $(".playlist").onclick = function (e) {
-        const songNode = e.target.closest(".song:not(.active)");
 
-        if (songNode || e.target.closest(".option")) {
+      playlist.onclick = function (e) {
+        const songNode = e.target.closest(".track:not(.active)");
+        if (songNode || e.target.closest(".option-track")) {
           if (songNode) {
+            console.log(songNode.dataset.index);
             _this.currentIndex = Number(songNode.dataset.index);
             _this.loadCurrentSong();
             _this.render();
             audio.play();
           }
-          if (e.target.closest(".option")) {
+          if (e.target.closest(".option-track")) {
+            //do something
           }
         }
       };
@@ -432,6 +436,7 @@
         this.loadCurrentSong();
       }
     },
+
     start: function () {
       // Assign configuration from config to application
       this.loadConfig();
@@ -453,5 +458,6 @@
       repeatBtn.classList.toggle("active", this.isRepeat);
     },
   };
+
   app.start();
 </script>
